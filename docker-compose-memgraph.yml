@@ -1,0 +1,31 @@
+services:
+  memoryengine:
+    build: .
+    container_name: agent
+    env_file:
+      - config/.env
+    ports:
+      - "8045:8045"
+      - "8501:8501"
+    restart: always
+
+  memgraph:
+    image: memgraph/memgraph-mage:latest
+    container_name: memgraph-mage
+    pull_policy: always
+    ports:
+      - "7687:7687"
+      - "7444:7444"
+    command: ["--log-level=TRACE"]
+
+  lab:
+    image: memgraph/lab:latest
+    container_name: memgraph-lab
+    pull_policy: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - memgraph
+    environment:
+      - QUICK_CONNECT_MG_HOST=memgraph
+      - QUICK_CONNECT_MG_PORT=7687

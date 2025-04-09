@@ -1,0 +1,21 @@
+.cache/
+deps/
+*.tsbuildinfo
+
+
+*.js
+*.d.ts
+*.map
+*.mp3
+*.mp4
+*.env
+
+.DS_Store
+Thumbs.db
+
+*.log
+memory_storage
+
+.env
+pycache/
+ __pycache__/

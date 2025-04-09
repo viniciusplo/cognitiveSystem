@@ -1,0 +1,10 @@
+services:
+  memoryengine:
+    build: .
+    container_name: agent
+    env_file:
+      - config/.env
+    ports:
+      - "8045:8045"
+      - "8501:8501"
+    restart: always
